@@ -1,0 +1,264 @@
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0];
+
+const panagram = ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+/*Every()
+Determine if every number is greater than or equal to 0
+determine if every word shorter than 8 characters*/
+const isEqualZero = (currentNumber) => currentNumber >= 0;///Initialise variable first
+const arr1=  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0];//initialise array
+
+console.log(arr1.every(isEqualZero));///returns true
+///every function  for array2 of strings
+function  isEnoughShort (element,index,array) {
+   return  element.length < 8;
+}  
+console.log(['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog'].every(isEnoughShort));//returns true :used function and used short statement
+/*Filter
+filter the array for numbers less than 4
+filter words that have an even length*/
+function isLessThan(value) {
+    return value < 4;
+}
+//const filterdArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0].filter(isLessThan);//
+console.log( "filtered  array of values less than 4 is "+" ="+ " "+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0].filter(isLessThan));
+// filter that have an even length
+function isEvenLength( element, index,array){
+    return element.length % 2===0;
+}
+console.log("filtered array of strings have an even length is "+" ="+ " "+ ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog'].filter(isEvenLength) );
+/*Find Index
+find the index of the first number that is divisible by 3
+find the index of the first word that is less than 2 characters long*/
+function findIndex(element){
+   return  element.length < 2;
+ }
+ console.log("index of the first word that is less than 2 characters long"+" = "+['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog'].indexOf (findIndex));
+ /*For Each
+console.log each value of the nums array multiplied by 3
+console.log each word with an exclamation point at the end of it*/
+//const arr1=  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0];
+arr1.forEach(element => console.log(element *3));
+//function exclamation(element,index,array){
+   // return `${element}!`;
+//}
+//let exclamationArray = 0;
+panagram.forEach(element=> 
+    console.log("Each word with an exclamation point at the end of it is" +" ="+ `${ element}!` ));
+  // console.log(panagram) ;///after for each origional array does not change  
+const copyPanagram = [];
+
+// before
+for (let i = 0; i < panagram.length; i++) {
+  copyPanagram.push(panagram[i]);
+}
+console.log(copyPanagram);//befor for each array stored in new array
+
+// after
+panagram.forEach((element) => {
+  copyPanagram.push(`${element}!`);
+})
+console.log(" After for each exclamation "+"="+copyPanagram);
+////Map///
+/*Map
+make a new array of each number multiplied by 100
+make a new array of all the words in all uppercase*/
+const multipliedByHundred = arr1.map((element) =>
+element*100);
+console.log(multipliedByHundred);
+///Words in uppercase
+const mapPanagram=panagram.map((element)=> element.toUpperCase());
+console.log(mapPanagram);
+///Stored uppercase words in new array
+const copymapPanagram = [];
+for(let i=0;i<mapPanagram.length;i++){
+    copymapPanagram.push(mapPanagram[i]);
+}
+console.log(copymapPanagram);
+//some///
+/*Some====Find out if some numbers are divisible by 7
+Find out if some words have the letter a in them*/
+console.log(arr1.some((element) => element %7));///since array has 7 number included it returns true
+
+const str = ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+const strA = ((element)=> element.includes('a'));
+console.log("letter 'a' availabality checking"+"="+str.some(strA));
+///Reduce
+/*Reduce
+Add all the numbers in the array together using the reduce method
+concatenate all the words using reduce*/
+const initialValue = 0;
+const sumWithInitial = arr1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue
+);
+
+console.log(sumWithInitial);
+
+//const allWords = panagram.concat((accumulator,currentValue)=> [...accumulator,...currentValue],[],);
+let initiaWord = ' ';
+const allWords = panagram.reduce((accumulator,currentValue) => accumulator + ' '+ currentValue,initiaWord);
+console.log(allWords);
+////Origional array would be  the same as it is
+/*Sort
+Try to sort without any arguments, do you get what you'd expect with the numbers array?
+Try to sort without any arguments, do you get what you'd expect with the words array?
+Sort the numbers in ascending order
+Sort the numbers in descending order
+Sort the words in ascending order
+Sort the words in descending order*/
+arr1.sort();
+console.log(arr1);//sorted without any arguments returns[1,10,2,3,4,5,6,7,8,9]
+panagram.sort();
+console.log(panagram);//sorted  without any arguments returns ['The',   'brown','dog',   'fox ''jumps', 'lazy','over',  'quick','the']
+function compareNumbers(a,b){
+    return a - b;
+}
+console.log(arr1.sort(compareNumbers));//sorted numbers in ascending order
+console.log(arr1.sort((a,b) => b -a));//sorted numbers in descending order
+console.log(panagram.sort((a,b) => a.localeCompare(b)));//sorted words in ascending order
+console.log(panagram.sort((a,b) => b.localeCompare(a)));//sorted words in descending order
+/*for( i =0; i<panagram.length;i++){
+    for(j=0;j<panagram.length;j++){
+        let temp=panagram[i].toLowerCase();
+       if( panagram[i] < panagram[j]){
+           panagram[i ]= panagram[j];
+           panagram[j] = temp;
+        }
+    }
+}
+console.log(panagram.sort((a , b) => a > b ? 1 : -1));
+console.log(panagram.sort((a,b) => a < b ? 1 : -1) );*/
+
+//Array Methods Challenge Problems
+//ispanagram const panagram = ['The', 'quick','brown','fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+
+const products = [
+    {
+      "name": "allen wrench",
+      "price": 2.99,
+      "description": "handy tool"
+    },
+    {
+      "name": "cornucopia",
+      "price": 5.99,
+      "description": "festive holiday decoration"
+    },
+    {
+      "name": "banana",
+      "price": 0.99,
+      "description": "full of potassium"
+    },
+    {
+      "name": "guillotine (cigar)",
+      "price": 10.59,
+      "description": "behead your stub"
+    },
+    {
+      "name": "jack-o-lantern",
+      "price": 3.99,
+      "description": "spooky seasonal fun"
+    },
+    {
+      "name": "doggie treat (box)",
+      "price": 5.99,
+      "description": "fido loves 'em"
+    },
+    {
+      "name": "egg separator",
+      "price": 3.99,
+      "description": "it separates yolks from whites"
+    },
+    {
+      "name": "LED lightbulb",
+      "price": 6.55,
+      "description": "It's super-efficient!"
+    },
+    {
+      "name": "owl pellets",
+      "price": 3.99,
+      "description": "Don't ask what they used to be."
+    },
+    {
+      "name": "flag",
+      "price": 5.99,
+      "description": "catches the breeze"
+    },
+    {
+      "name": "hair brush",
+      "price": 6.99,
+      "description": "fine boar bristles"
+    },
+    {
+      "name": "iridium (one gram)",
+      "price": 19.36,
+      "description": "corrosion-resistant metal"
+    },
+    {
+      "name": "quark",
+      "price": 0.01,
+      "description": "Very small"
+    },
+    {
+      "name": "turtleneck",
+      "price": 19.99,
+      "description": "available in black and slightly-darker black"
+    },
+    {
+      "name": "kaleidoscope",
+      "price": 8.25,
+      "description": "tube with moving plastic pieces inside"
+    },
+    {
+      "name": "mitt (leather)",
+      "price": 15,
+      "description": "regulation sized"
+    },
+    {
+      "name": "nothing",
+      "price": 10,
+      "description": "Hey, if you pay us, we won't ask any questions."
+    },
+    {
+      "name": "violin",
+      "price": 2000,
+      "description": "Talk about a JS fiddle..."
+    },
+    {
+      "name": "yoyo",
+      "price": 1,
+      "description": "We had to pull some strings to get this one in."
+    },
+    {
+        "name": "pincushion",
+        "price": 1.99,
+        "description": "You'll get 'stuck' on it"
+      },
+    ]
+    /*filter for products with a price that is less than 10, using the array below:
+sort alphabetically by product name*/
+/*function priceIsLessThan (array,price){
+    return  price <= 10;
+}
+const filtered =  products.filter(priceIsLessThan);
+console.log(filtered);*/
+products.forEach((element) => {
+if (element.price<10){
+   // console.log( element);
+}
+});
+
+//sort
+/*for( i =0; i<products.length;i++){
+    for(j=0;j<products.length;j++){
+        let temp=products[i].toLowerCase();
+       if( products[i] < products[j]){
+           products[i ]= products [j];
+           products[j] = temp;
+        }
+    }
+}*/
+console.log(products.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0)));
+
+
+//const compareFn = (a, b) => (a.name.toLowerCase())? 1 > (b.name.toLowerCase() ? 1 : -1);
+//console.log(products.sort(compareFn));
